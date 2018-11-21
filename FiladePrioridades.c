@@ -36,7 +36,7 @@ void imprime (Fila* f);
 int main()
 {
     setlocale(LC_ALL, "portuguese"); //Permite acentuação no console
-    system("MODE con cols=70 lines=30"); //Ajusta a largura e altura da tela
+   //system("MODE con cols=70 lines=30"); //Ajusta a largura e altura da tela
     system("COLOR 0A");
 
     //Declração de variáveis
@@ -63,7 +63,6 @@ int main()
         scanf("%d",&tamanho);
         
         for(i=0;i<tamanho;i++){
-        	printf("aki.\n");
 	        fflush(stdin);
 	        printf("Nome: ");
 	        gets(nome); //alterar para o scanf com espaço
@@ -343,7 +342,6 @@ void insere_na_fila(Fila* c, Fila* a, Fila* b, char nome[],char turma[], int tem
         q->prioridade=tempo; 
         q->prox=NULL;
        
-        
         // verifica se a fila completa está vazia e insere o nó nela
         if(vazia(c))
         {
@@ -355,7 +353,6 @@ void insere_na_fila(Fila* c, Fila* a, Fila* b, char nome[],char turma[], int tem
             c->fim=q;
         }
        
-
     }else
         printf("Erro ao criar o no");
         
@@ -387,11 +384,13 @@ void insere_na_fila(Fila* c, Fila* a, Fila* b, char nome[],char turma[], int tem
                 soma_a+=aux->prioridade;
                 aux=aux->prox;
             }
+            
             aux=b->inicio;
             while(aux!=NULL){
                 soma_b+=aux->prioridade;
                 aux=aux->prox;
             }
+           // printf("soma a:%d soma b: %d\n",soma_a,soma_b);
             if(soma_a<=soma_b){
                 (a->fim)->prox=r;
                 a->fim=r;

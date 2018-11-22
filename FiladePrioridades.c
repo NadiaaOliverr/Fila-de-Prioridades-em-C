@@ -30,6 +30,9 @@ void inicializa(Fila *f);
 int vazia(Fila *f);
 Celula* criar_no();
 void imprime (Fila* f);
+//falta implementar
+int contar_elementos_fila(); //pode ser recursiva
+void organizar_fila ();
 
 
 int main()
@@ -52,6 +55,7 @@ int main()
     inicializa(&pa);
     inicializa(&pb);
     
+    //laço de repetição que chama o menu e possibilita a escolha das operações e chamadas de função
  do{
   
 	menu_inicial();
@@ -83,6 +87,7 @@ int main()
         }
         system("cls");
     }
+   
    // nas funçoes de número 2, 3 e 4 é preciso decicir se vai usar impressão clássica ou não clássica
    if(retorno_menu_inicial==2){
    	   system("cls");
@@ -123,7 +128,7 @@ int main()
     }
    
 
-    else if(retorno_menu_inicial==8)
+    else if(retorno_menu_inicial==8) //precisa de um do while só pra ele, até que clique no modo 6
     {
         system("cls");
         menu_modo_alerta();
@@ -148,7 +153,7 @@ int main()
 
     }
     
-}while(retorno_menu_inicial!=9);
+}while(retorno_menu_inicial!=9 && retorno_menu_inicial!=8);
     return 0;
 }
 void altera_numero_da_turma()
@@ -475,6 +480,9 @@ void imprime (Fila* f){ //impressão não classica, só pra verificar como os eleme
     }
 }
 
+
+
+
 void menu_inicial()
 {
 
@@ -587,8 +595,9 @@ void menu_modo_alerta()
     printf("   |\t[2] - Verificar toda fila de impressão.                 |\n");
     printf("   |\t[3] - Remover algum elemento da fila de impressão.      |\n");
     printf("   |\t[4] - Alterar número de alunos de uma turma.            |\n");
-    printf("   |\t[5] - Modo normal.                                      |\n");
-    printf("   |\t[6] - Sair.                                             |");
+    printf("   |\t[5] - Imprimir                                          |\n");
+    printf("   |\t[6] - Modo normal.                                      |\n");
+    printf("   |\t[7] - Sair.                                             |");
     printf("\n   --------------------------------------------------------------\n");
 
 }

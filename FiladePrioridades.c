@@ -1,11 +1,11 @@
 //Declaração das bibliotecas
 #include <stdio.h>
-#include <locale.h>
-#include <time.h>
 #include <stdlib.h>
+#include <locale.h> //para utilizar a setlocale()
+#include <time.h>
 #include <conio.h> //para utilizar o getch()
 #include <ctype.h> //para utilizar o isdigit()
-#include <string.h>
+#include <string.h> //para utilizar strcpy(), strcmp()
 
 typedef struct scelula{
     char nome_elemento[50];
@@ -22,7 +22,6 @@ typedef struct sfila{
 //Protótipo das funções
 void menu_inicial();
 void menu_modo_alerta();
-
 int escolha_do_menu_inicial();
 int quantidade_de_alunos(char turma[]);
 void altera_numero_da_turma();
@@ -40,7 +39,7 @@ int main()
     system("COLOR 0A");
 
     //Declração de variáveis
-    int retorno;
+    int retorno_menu_inicial;
     int nalunos,folhas,tamanho,i, tempo;
     char nome[100];
     char turma[100];
@@ -48,6 +47,7 @@ int main()
     Fila pa;
     Fila pb;
     
+    //inicializando as filas de impressão
 	inicializa(&pc);
     inicializa(&pa);
     inicializa(&pb);
@@ -55,9 +55,9 @@ int main()
  do{
   
 	menu_inicial();
-    retorno = escolha_do_menu_inicial();
+    retorno_menu_inicial = escolha_do_menu_inicial();
     
-	if(retorno==1)
+	if(retorno_menu_inicial==1)
     {	
         printf("Quantos elementos serão adicionados na fila?.\n");
         scanf("%d",&tamanho);
@@ -81,77 +81,129 @@ int main()
 		tempo=nalunos*folhas*15; //cálculo do tempo gasto na impressão de um elemento
         insere_na_fila(&pc,&pa,&pb,nome,turma,tempo);
         }
+        system("cls");
     }
-   
-   if(retorno==2){
-   	imprime(&pa);
+   // nas funçoes de número 2, 3 e 4 é preciso decicir se vai usar impressão clássica ou não clássica
+   if(retorno_menu_inicial==2){
+   	   system("cls");
+	   imprime(&pa);
+
+
    }
    
-   if(retorno==3){
-   	imprime(&pb);
+   if(retorno_menu_inicial==3){
+   	   system("cls");
+	   imprime(&pb);
    }
    
-   if(retorno==4){
+   if(retorno_menu_inicial==4){
+    system("cls");
    	imprime(&pc);
    }
    
-    if(retorno==6)
+   if(retorno_menu_inicial==5)
+    {
+        system("cls");
+        printf("Ainda não implementado.\n");
+        exit(1);
+    }
+   
+    if(retorno_menu_inicial==6)
     {
         altera_numero_da_turma();
+        Sleep(1500);
+        system("cls");
+    }
+    
+    if(retorno_menu_inicial==7)
+    {
+        system("cls");
+        printf("Ainda não implementado.\n");
+        exit(1);
     }
    
 
-    else if(retorno==8)
+    else if(retorno_menu_inicial==8)
     {
         system("cls");
         menu_modo_alerta();
     }
-}while(retorno!=9);
+    
+    if(retorno_menu_inicial==9)
+    {
+        int i =0;
+        for(i=0; i<=100; i++)//laco de repeticao de zero a 100.
+        {
+            system("cls");
+            printf("              	 ___________________________________________________");
+            printf("\n \t\t|\t\t     Saindo do sistema              |");
+            printf("\n            	|___________________________________________________|");
+            printf("     %d%% ",i);
+
+        }
+
+        system("cls");	//limpa a tela
+        Sleep(900);//espera de um segundo
+        printf("Sistema deslogado.\n");
+
+    }
+    
+}while(retorno_menu_inicial!=9);
     return 0;
 }
 void altera_numero_da_turma()
 {
 
-    int i=0,j=0,tamanho,tam, folhas;
-    char nome[100];
-    char turma[100];
-    FILE *alunos_por_turma;
-    int quantidade,ano;
-    char nome_da_turma[100];
-    char* aux;
-    int teste;
-    char aux2[100];
-    char aux3[10];
+    int i=0,z=0,t=0,d,x,encontrou=0; 
 
-    char* token;
+    char turma[100]; //variável de entrada
+    int turmanovo; //Variável de entrada
+
+    int tam; //Para ver o tamanho da palavra que foi inserida na entrada "turma", para posterior alocação na varável aux
+    char* token; //Recebe o argumento que servirá de token para quebrar a string digitada na variável "turma"
+
+    //Variáveis para ler do arquivo
+    char nome_da_turma[100];
+    int quantidade;
+    int ano;
+	
+    //Variáveis auxiliares para quebra da turma digitada
+    char* aux; //Cópia da turma para aux, ou seja turma = aux
+    char aux2[100];
+    char aux3[10]; 
+
+
+    //Criação de arquivos
+    FILE *alunos_por_turma;
+    FILE *alunos_por_turma_aux;
+
+
 
     alunos_por_turma = fopen("Números de alunos por turma.txt","r");
+    alunos_por_turma_aux = fopen("Novo números de alunos por turma.txt","w");
     if(alunos_por_turma==NULL)
     {
         printf("Arquivo inexistente.\n");
         exit(1);
     }
+    if(alunos_por_turma_aux==NULL)
+    {
+        printf("Arquivo inexistente.\n");
+        exit(1);
+    }
 
-    printf("Qual turma gostaria de alterar a quantidade de alunos?");
+    printf("Qual turma gostaria de alterar a quantidade de alunos?\n");
     gets(turma);
-//  printf("A quantidade de alunos da tuma é: %d\n",(*x));
 
 
-
-    int turmanovo;
-
-
-
-    tam = strlen(turma); //Verifica o tamanho da string para posterior alocação na variável auxiliar para busca no arquivo
+    tam = strlen(turma); 
     aux = (char*)malloc(tam * sizeof(char));
-    strcpy(aux,turma); //faz a cópia da turma digitada para variável que servirá de comparação para verificar a existência no arquivo
+    strcpy(aux,turma);
 
 
     token = strtok(aux, " ");
-    int t=0;
     while (token != NULL)
     {
-
         if(t==0)
         {
             strcpy(aux3,token);
@@ -160,75 +212,77 @@ void altera_numero_da_turma()
 
         token = strtok(NULL, " ");
         t++;
-
     }
 
-    int x = atoi(aux3);
-    int y=0;
-    int z=0;
-    int d;
-
-    FILE *alunos_por_turma1;
-
-    alunos_por_turma1 = fopen("Novo números de alunos por turma.txt","w");
-    fclose(alunos_por_turma);
-                alunos_por_turma = fopen("Números de alunos por turma.txt","r");
-
+    x = atoi(aux3); //Converte o char armazenado na variável aux3 em inteiro
+    
+    
+    
     while( (fscanf(alunos_por_turma,"%d %s %d\n", &ano, nome_da_turma, &quantidade))!=EOF ) //Lê o txt até encontrar o fim do arquivo
     {
-
-
         if(ano==x)
         {
             if(strcmp(nome_da_turma,aux2)==0)
             {
-                printf("Qual o novo número de alunos dessa turma?\n");
+            	for(i=0;i<strlen(nome_da_turma);i++)
+            	{
+            		nome_da_turma[i]  = toupper(nome_da_turma[i]); // Converte caracter minúsculo em maiúsculo para aparecer para o usuário destacado
+            	}
+            	
+            	printf("\nO tamanho atual da turma %s é: %d alunos!\n",nome_da_turma,quantidade);
+                printf("\nQual o novo número de alunos dessa turma?\n");
                 scanf("%d",&turmanovo);
-
-                fprintf(alunos_por_turma1,"%d %s %d\n", ano,nome_da_turma,turmanovo);
-                d = 1;
                 
+                for(i=0;i<strlen(nome_da_turma);i++)
+            	{
+            		nome_da_turma[i]  = tolower(nome_da_turma[i]); // Converte caracter maiúsculo em minúsculo para gravar no arquivo
+            	}
+
+                fprintf(alunos_por_turma_aux,"%d %s %d\n", ano,nome_da_turma,turmanovo);
+                d = 1;
+                encontrou = 1;
             }
             else
             {
-                d =0;
-                y++;
+                d=0;
             }
         }
-        
-        j++;
         if(d==1)
         {
-            continue;
-        }else{
-        fprintf(alunos_por_turma1,"%d %s %d\n", ano,nome_da_turma,quantidade);
+            d=0;
+        }
+        else
+        {
+            fprintf(alunos_por_turma_aux,"%d %s %d\n", ano,nome_da_turma,quantidade);
+        }
     }
-    }
-    if(y==j)
+
+    if(!encontrou)
     {
-        z = 0;
-        printf("Não existe no arquivo.\n");
+        printf("A turma informada não se encontra no arquivo.\n");
     }
-
-                fclose(alunos_por_turma);
-                alunos_por_turma = fopen("Números de alunos por turma.txt","w");
-                fclose(alunos_por_turma1);
-
-                alunos_por_turma1 = fopen("Novo números de alunos por turma.txt","r");
-
-
-    while( (fscanf(alunos_por_turma1,"%d %s %d\n", &ano, nome_da_turma, &quantidade))!=EOF ) //Lê o txt até encontrar o fim do arquivo
+    else if(encontrou)
     {
-        //printf("%d %s %d\n",ano,nome_da_turma,quantidade);
+    	printf("Alterado com sucesso.\n");
+	}
 
-                fprintf(alunos_por_turma,"%d %s %d\n", ano,nome_da_turma,quantidade);
+    fclose(alunos_por_turma);
 
+    alunos_por_turma = fopen("Números de alunos por turma.txt","w");
+    
+    fclose(alunos_por_turma_aux);
+
+    alunos_por_turma_aux = fopen("Novo números de alunos por turma.txt","r");
+
+
+    while( (fscanf(alunos_por_turma_aux,"%d %s %d\n", &ano, nome_da_turma, &quantidade))!=EOF ) //Lê o txt até encontrar o fim do arquivo
+    {
+        fprintf(alunos_por_turma,"%d %s %d\n", ano,nome_da_turma,quantidade);
     }
-    fclose(alunos_por_turma1);
-    remove("Novo números de alunos por turma.txt");
-
+    fclose(alunos_por_turma_aux);
+    remove("Novo números de alunos por turma.txt"); //Remove o arquivo auxiliar
+    fclose(alunos_por_turma);
 }
-
 
 int quantidade_de_alunos(char turma[]) //retorna a quantidade de alunos de uma turma, lendo no arquivo
 {
@@ -466,7 +520,7 @@ int escolha_do_menu_inicial()
 
             //isdigit verifica se o que foi digitado é um número ou não, retornando qualquer número diferente de 0, se for um número
 
-            if (isdigit(c)!=0)  //se for um número
+            if (isdigit(c)!=0)	//se for um número
             {
                 digitado[i] = c;//armazena no vetor de caracteres
                 i++;
@@ -487,7 +541,7 @@ int escolha_do_menu_inicial()
 
             //isdigit verifica se o que foi digitado é um número ou não, retornando qualquer número diferente de 0, se for um número
 
-            if (isdigit(c)!=0)  //se for um número
+            if (isdigit(c)!=0)	//se for um número
             {
                 digitado[i] = c;//armazena no vetor de caracteres
                 i++;
@@ -501,10 +555,10 @@ int escolha_do_menu_inicial()
         }
         cont ++;
     }
-    while(c<'1' || c>'9');
+    while(c<'1' || c>'8');
 
 
-    digitado[i]='\0';   //o índice atual do vetor de caracteres recebe a terminação da string
+    digitado[i]='\0';	//o índice atual do vetor de caracteres recebe a terminação da string
 
     int tam = strlen(digitado);
 

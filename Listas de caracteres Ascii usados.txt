@@ -1,0 +1,10 @@
+ã - 198
+é - 130
+ú - 163
+Ã - 199
+ç - 135
+Ç - 128
+á - 160
+
+
+Link da tabela Ascii: https://web.fe.up.pt/~ee96100/projecto/Tabela%20ascii.htm

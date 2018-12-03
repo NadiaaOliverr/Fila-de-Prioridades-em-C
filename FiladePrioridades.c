@@ -25,13 +25,16 @@ void menu_modo_alerta();
 int escolha_do_menu_inicial();
 int quantidade_de_alunos(char turma[]);
 void altera_numero_da_turma();
+
 //funçoes de fila
 void insere_na_fila(Fila* a, Fila* b, char nome[],char turma[], int tempo);
 void inicializa(Fila *f);
 int vazia(Fila *f);
 Celula* criar_no();
-void imprime (Fila* f);
-int contar_elementos_fila(Celula *aux);
+void imprime (Fila* f);// usar a clássica, essa é a não classica
+int contar_elementos_fila(Fila *f, Fila *g);
+void desenfileirar(Fila *fila);
+void enfileirar(Fila* f, char z[], char x[]);
 
 //funções de lista para quando uma lista auxiliar for utilizada
 void imprime_lista(Celula* lista);
@@ -44,8 +47,8 @@ void organizar_fila ();
 
 int main()
 {
-    setlocale(LC_ALL, "portuguese"); //Permite acentuação no console
-   //system("MODE con cols=70 lines=30"); //Ajusta a largura e altura da tela
+    //setlocale(LC_ALL, "portuguese"); //Permite acentuação no console
+    //system("MODE con cols=70 lines=30"); //Ajusta a largura e altura da tela
     system("COLOR 0A");
 
     //Declração de variáveis
@@ -57,125 +60,303 @@ int main()
     Celula* pc;
     Fila pa;
     Fila pb;
-
+    Fila g;
+	
 	//inicializando a lista auxiliar
 	pc=NULL;
-
+	
     //inicializando as filas de impressão
     inicializa(&pa);
     inicializa(&pb);
+    
 
     //laço de repetição que chama o menu e possibilita a escolha das operações e chamadas de função
- do{
-
-	menu_inicial();
-    retorno_menu_inicial = escolha_do_menu_inicial();
-
-	if(retorno_menu_inicial==1)
+    do
     {
-        printf("Quantos elementos serão adicionados na fila?.\n");
-        scanf("%d",&tamanho);
 
-        for(i=0;i<tamanho;i++){
-	        fflush(stdin);
-	        printf("Nome: ");
-	        gets(nome); //alterar para o scanf com espaço
-	        printf("Quantidade de folhas: ");
-	        scanf("%d",&folhas);
-	        fflush(stdin);
-	        printf("Turma: ");
-	        gets(turma);
-	        nalunos = quantidade_de_alunos(turma);
-	        if(nalunos==0)
-        	{
+        menu_inicial();
+        retorno_menu_inicial = escolha_do_menu_inicial();
 
-        	printf("Turma nao cadastrada.\nTente novamente");
-    		main();
-			}
-		tempo=nalunos*folhas*15; //cálculo do tempo gasto na impressão de um elemento
-        insere_na_fila(&pa,&pb,nome,turma,tempo);
-        insere_na_lista(&pc,nome,turma,tempo);
+        if(retorno_menu_inicial==1)
+        {
+            printf("Quantos elementos ser%co o adicionados na fila?\n",198);
+            scanf("%d",&tamanho);
+
+            for(i=0; i<tamanho; i++)
+            {
+                fflush(stdin);
+                printf("Nome: ");
+                gets(nome); //alterar para o scanf com espaço
+                printf("Quantidade de folhas: ");
+                scanf("%d",&folhas);
+                fflush(stdin);
+                printf("Turma: ");
+                gets(turma);
+                nalunos = quantidade_de_alunos(turma);
+                if(nalunos==0)
+                {
+
+                    printf("Turma nao cadastrada.\nTente novamente");
+                    main();
+                }
+                tempo=nalunos*folhas*15; //cálculo do tempo gasto na impressão de um elemento
+                insere_na_fila(&pa,&pb,nome,turma,tempo);
+                insere_na_lista(&pc,nome,turma,tempo);
+            }
+            system("cls");
         }
-        system("cls");
-    }
 
-   // nas funçoes de número 2, 3 e 4 é preciso decicir se vai usar impressão clássica ou não clássica
-   if(retorno_menu_inicial==2){
-   	   system("cls");
-	   imprime(&pa);
-       printf("Quantidade de elementos na fila A: %d\n",contar_elementos_fila((&pa)->inicio));
-       printf("\nPressione qualquer tecla para prosseguir...\n");
-       scanf("%c",&variavel_de_pausa);
-       system("cls");
-   }
-
-   if(retorno_menu_inicial==3){
-	   	   system("cls");
-		   imprime(&pb);
-		   printf("Quantidade de elementos na fila B: %d\n",contar_elementos_fila((&pb)->inicio));
-		   printf("\nPressione qualquer tecla para prosseguir...\n");
-	       scanf("%c",&variavel_de_pausa);
-	       system("cls");
-   }
-
-   if(retorno_menu_inicial==4){
-	    system("cls");
-	   	imprime_lista(pc);
-	   	printf("\nPressione qualquer tecla para prosseguir...\n");
-	    scanf("%c",&variavel_de_pausa);
-	    system("cls");
-   }
-
-   if(retorno_menu_inicial==5)
-    {
-        system("cls");
-        printf("Ainda não implementado.\n");
-        exit(1);
-    }
-
-    if(retorno_menu_inicial==6)
-    {
-        altera_numero_da_turma();
-       // Sleep(1500);
-        system("cls");
-    }
-
-    if(retorno_menu_inicial==7)
-    {
-        system("cls");
-        printf("Ainda não implementado.\n");
-        exit(1);
-    }
-
-
-    else if(retorno_menu_inicial==8) //precisa de um do while só pra ele, até que clique no modo 6
-    {
-        system("cls");
-        menu_modo_alerta();
-    }
-
-    if(retorno_menu_inicial==9)
-    {
-        int i =0;
-        for(i=0; i<=100; i++)//laco de repeticao de zero a 100.
+        // nas funçoes de número 2, 3 e 4 é preciso usar a impressão clássica
+        if(retorno_menu_inicial==2)
         {
             system("cls");
-            printf("              	 ___________________________________________________");
-            printf("\n \t\t|\t\t     Saindo do sistema              |");
-            printf("\n            	|___________________________________________________|");
-            printf("     %d%% ",i);
+			inicializa(&g); //g é uma fila auxiliar para caso seja necessário percorrer uma fila ou remover um elemento
+			imprime(&pa);
+			printf("Quantidade de elementos na fila A: %d\n",contar_elementos_fila(&pa,&g));
+			pa = g; //pa volta a ser a fila original
+			printf("\nPressione enter para prosseguir...\n");
+			scanf("%c",&variavel_de_pausa);
+			system("cls");
 
         }
 
-        system("cls");	//limpa a tela
-        //Sleep(1000);//espera de um segundo
-        printf("Sistema deslogado.\n");
+        if(retorno_menu_inicial==3)
+        {
+            system("cls");
+           	inicializa(&g); //g é uma fila auxiliar para caso seja necessário percorrer uma fila ou remover um elemento
+            imprime(&pb);
+            printf("Quantidade de elementos na fila B: %d\n",contar_elementos_fila(&pb,&g));
+			pb = g; //pb volta a ser a fila original
+			printf("\nPressione enter para prosseguir...\n");
+			scanf("%c",&variavel_de_pausa);
+			system("cls");
+        }
+
+        if(retorno_menu_inicial==4)
+        {
+	    system("cls");
+	   	imprime_lista(pc);
+	   	printf("\nPressione enter para prosseguir...\n");
+	    scanf("%c",&variavel_de_pausa);
+	    system("cls");
+        }
+
+        if(retorno_menu_inicial==5)
+        {
+            system("cls");
+            printf("Ainda não implementado.\n");
+            exit(1);
+        }
+
+        if(retorno_menu_inicial==6)
+        {
+            altera_numero_da_turma();
+            Sleep(1500);
+            system("cls");
+        }
+
+        if(retorno_menu_inicial==7)
+        {
+            int esc;
+            system("cls");
+            do
+            {
+                system("cls");
+                printf("\n   ----------------------------------------------------\n");
+                printf("   |\t[1] - Imprimir a fila da impressora A.        |\n");
+                printf("   |\t[2] - Imprimir a fila da impressora B.        |\n");
+                printf("   |\t[3] - Imprimir ambas filas de impress%co.      |\n",198);
+                printf("   |\t[4] - Voltar ao Menu anterior.                |");
+                printf("\n   ----------------------------------------------------\n");
+
+                printf("\n\n\t\t Op%c%co: ",135,198);
+
+
+                scanf("%d",&esc);
+            }
+            while(esc<1 || esc>4);
+
+            if(esc==1)
+            {
+
+                int i;
+                char teste[120]=""; //limpa o espaco reservado na memoria
+
+                int tempo = clock();
+
+                int c=2;
+
+                for(i=0; i<=100; i++)//laco de repeticao de zero a 100.
+                {
+
+
+                    if(i%2==0)
+                    {
+
+                        strcat(teste,"Û");
+                    }
+                    system("CLS");//limpa a tela
+
+                    printf("\t\t\t\t\t\t\tImpressora A\n\n");
+                    printf("\t\t\t               ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿");
+                    printf("\n  Imprindo Arquivos de A ");
+
+
+                    printf("\t\t  %s ",teste);//exibe na tela a contagem de "i" e acumula os caracteres "Û" na tela
+
+                    printf("\n\t\t\t               ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ");
+
+                    printf("     %d%% ",i);
+
+                    Sleep(115*c);
+
+
+                }
+                system("cls");
+
+            }
+            else if(esc==2)
+            {
+
+
+                int i;
+                char teste[120]=""; //limpa o espaco reservado na memoria
+
+                int tempo = clock();
+
+                int c=2;
+
+                for(i=0; i<=100; i++)//laco de repeticao de zero a 100.
+                {
+
+
+                    if(i%2==0)
+                    {
+
+                        strcat(teste,"Û");
+                    }
+                    system("CLS");//limpa a tela
+
+                    printf("\t\t\t\t\t\t\tImpressora B\n\n");
+                    printf("\t\t\t               ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿");
+                    printf("\n  Imprimindo Arquivos de B");
+
+
+                    printf("\t\t  %s ",teste);//exibe na tela a contagem de "i" e acumula os caracteres "Û" na tela
+
+                    printf("\n\t\t\t               ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ");
+
+                    printf("     %d%% ",i);
+
+                    Sleep(115*c);
+
+
+                }
+                system("cls");
+            }
+            else if(esc==3)
+            {
+                int i;
+                char teste[120]=""; //limpa o espaco reservado na memoria
+
+                int tempo = clock();
+
+                int c=2; //AQUI É A QUANTIDADE DE FOLHAS QUE VAI SER MULTIPLICADA POR 15 SEGUNDOS
+
+                //PENSEI EM COLOCAR SÓ IMPRIMINDO FILA DE IMPRESSÃO DE A, AÍ MOSTRAR A FILA DE
+                //IMPRESSÃO DE A ANTES, UMA LISTA, SÓ CHAMAR O PRINTAR
+
+
+                //ACHO QUE NÃO PRECISA COLOCAR
+                // POR EXEMPLO : IMPRIMINDO PROVA DE BIOLOGIA. ( OBS: ACHO QUE DARIA UM TRAMPO GRANDÃO, PRA TROCAR
+                //DE PROVA DE BIOLOGIA PARA GEOGRAFIA POR EXEMPLO)
+
+
+
+                for(i=0; i<=100; i++)//laco de repeticao de zero a 100.
+                {
+
+
+                    if(i%2==0)
+                    {
+
+                        strcat(teste,"Û");
+                    }
+                    system("CLS");//limpa a tela
+
+                    printf("\t\t\t\t\t\t\tImpressora A\n\n");
+                    printf("\t\t\t               ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿");
+                    printf("\n  Imprindo Arquivos de A ");
+
+
+                    printf("\t\t  %s ",teste);//exibe na tela a contagem de "i" e acumula os caracteres "Û" na tela
+
+                    printf("\n\t\t\t               ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ");
+
+                    printf("     %d%% ",i);
+
+
+                    printf("\n\n\n\n");
+
+                    printf("\t\t\t\t\t\t\tImpressora B\n\n");
+                    printf("\t\t\t               ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿");
+                    printf("\n  Imprimindo Arquivos de B");
+
+
+                    printf("\t\t  %s ",teste);//exibe na tela a contagem de "i" e acumula os caracteres "Û" na tela
+
+                    printf("\n\t\t\t               ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ");
+
+                    printf("     %d%% ",i);
+
+                    Sleep(115*c);
+
+
+                }
+                system("cls");
+            }
+            else if(esc==4)
+            {
+                system("cls");
+            }
+
+        }
+
+
+
+
+        else if(retorno_menu_inicial==8) //precisa de um do while só pra ele, até que clique no modo 6
+        {
+            system("cls");
+            menu_modo_alerta();
+        }
+
+        if(retorno_menu_inicial==9)
+        {
+            int i =0;
+            for(i=0; i<=100; i++)//laco de repeticao de zero a 100.
+            {
+                system("cls");
+                printf("              	 ___________________________________________________");
+                printf("\n \t\t|\t\t     Saindo do sistema              |");
+                printf("\n            	|___________________________________________________|");
+                printf("     %d%% ",i);
+
+            }
+
+            system("cls");	//limpa a tela
+            Sleep(900);//espera de um segundo
+            printf("Sistema deslogado.\n");
+
+        }
 
     }
-
-}while(retorno_menu_inicial!=9 && retorno_menu_inicial!=8);
+    while(retorno_menu_inicial!=9 && retorno_menu_inicial!=8);
     return 0;
 }
+
+
+
 void altera_numero_da_turma()
 {
 
@@ -462,15 +643,20 @@ void insere_na_fila(Fila* a, Fila* b, char nome[],char turma[], int tempo){ //in
     printf("Erro na criacao do no\n");
 }
 
-void imprime (Fila* f){ //impressão não classica, só pra verificar como os elementos são distribuidos
+void imprime (Fila* f)  //impressão não classica, só pra verificar como os elementos são distribuidos
+{
     Celula* aux;
-    if(vazia(f)){
+    if(vazia(f))
+    {
         printf("Erro -- Lista vazia\n");
         //exit(1);
-    }else{
+    }
+    else
+    {
         aux=f->inicio;
-        while(aux!=NULL){
-            printf("\nTurma:%s\nImpressão:%s\n",aux->nome_da_turma, aux->nome_elemento);
+        while(aux!=NULL)
+        {
+            printf("\nTurma:%s\nImpress%co:%s\n",aux->nome_da_turma, 198,aux->nome_elemento);
             aux=aux->prox;
         }
     }
@@ -489,7 +675,7 @@ void insere_na_lista(Celula** c,char nome[],char turma[], int tempo){
 		q=criar_no();
 
         if(q==NULL){
-        printf("Erro na alocaçao do no");
+        printf("Erro na aloca%cao do no",135);
         exit(1);
     }else
         strcpy(q->nome_elemento,nome);
@@ -513,13 +699,93 @@ void imprime_lista(Celula* lista){
     Celula *aux;
     aux=lista;
     while(aux!= NULL){
-        printf("\nTurma:%s\nImpressão:%s\n",aux->nome_da_turma, aux->nome_elemento);
+        printf("\nTurma:%s\nImpress%co:%s\n",aux->nome_da_turma,198, aux->nome_elemento);
         aux=aux->prox;
     }
     printf("\n");
 }
 
+void desenfileirar(Fila *fila)
+{
+    Celula *aux;
+    char c[100];
+    char b[100];
+    if(vazia(fila))
+    {
+        printf("Fila esta vazia.\n");
+        //return 0;
+    }
+    aux = fila->inicio;
+    strcpy(c, fila->inicio->nome_da_turma);
+    strcpy(b, fila->inicio->nome_elemento);
 
+    fila->inicio  = fila->inicio->prox; //faço o inicio receber o proximo;
+
+
+
+    if(fila->inicio==NULL) //fila ficou vazia;
+    {
+        fila->fim = NULL;
+    }
+    //printf("Removeu %s e %s.\n",c,b);
+    free(aux);
+}
+
+void enfileirar(Fila* f, char z[], char x[])
+{
+    Celula* q;
+    q=criar_no();
+    if(q!=NULL)  //se criou o no
+    {
+        strcpy(q->nome_da_turma,z);
+        strcpy(q->nome_elemento,x);
+        q->prox=NULL;
+        
+		if(vazia(f))
+        {
+            f->inicio=q;
+            f->fim=q;
+        }
+        else
+        {
+            (f->fim)->prox=q;
+            f->fim=q;
+        }
+    }
+    else
+        printf("Erro ao criar o no");
+}
+
+
+int contar_elementos_fila(Fila *f, Fila *g)
+{
+    int cont=0;
+    char c[100];
+    char x[100];
+
+
+    Celula* aux;
+    if(vazia(f))
+    {
+        printf("Erro -- Fila vazia\n");
+        //exit(1);
+    }
+    else
+    {
+        aux=f->inicio;
+
+        while(aux!=NULL)
+        {
+            strcpy(c, aux->nome_da_turma);
+            strcpy(x, aux->nome_elemento);
+            cont ++;
+			enfileirar(g,c,x);
+            desenfileirar(f);
+            aux=aux->prox;
+        }
+    }
+    return cont;
+}
 
 void menu_inicial()
 {
@@ -529,22 +795,23 @@ void menu_inicial()
 
     _strdate(dateStr);
     _strtime(timeStr);
-    printf("\n\t FILA DE IMPRESSÃO ESCOLA ADIRON GONÇALVES BOAVENTURA \n");
-    printf("\t\t  Horário do sistema: %s\n",timeStr);
+    printf("\n\t FILA DE IMPRESS%cO ESCOLA ADIRON GON%cALVES BOAVENTURA \n",199,128);
+    printf("\t\t  Hor%crio do sistema: %s\n",160,timeStr);
     printf("\t\t\t    ");
     system("date /t");
     printf("\n   --------------------------------------------------------------\n");
-    printf("   |\t[1] - Adicionar elementos a fila de impressão.          |\n");
-    printf("   |\t[2] - Verificar fila de impressão da impressora A.      |\n");
-    printf("   |\t[3] - Verificar fila de impressão da impresora B.       |\n");
-    printf("   |\t[4] - Verificar toda fila de impressão.                 |\n");
-    printf("   |\t[5] - Remover algum elemento da fila de impressão.      |\n");
-    printf("   |\t[6] - Alterar número de alunos de uma turma.            |\n");
+    printf("   |\t[1] - Adicionar elementos a fila de impress%co.          |\n",198);
+    printf("   |\t[2] - Verificar fila de impress%co da impressora A.      |\n",198);
+    printf("   |\t[3] - Verificar fila de impress%co da impresora B.       |\n",198);
+    printf("   |\t[4] - Verificar toda fila de impress%co.                 |\n",198);
+    printf("   |\t[5] - Remover algum elemento da fila de impress%co.      |\n",198);
+    printf("   |\t[6] - Alterar n%cmero de alunos de uma turma.            |\n",163);
     printf("   |\t[7] - Imprimir                                          |\n");
     printf("   |\t[8] - Modo alerta.                                      |\n");
     printf("   |\t[9] - Sair.                                             |");
     printf("\n   --------------------------------------------------------------\n");
 }
+
 int escolha_do_menu_inicial()
 {
 
@@ -560,7 +827,7 @@ int escolha_do_menu_inicial()
         if(cont==0)
         {
 
-            printf("\t\t       Opcao desejada: ");
+            printf("\t\t       Op%c%co desejada: ",135,198);
             c=getch();//captura o caractere digitado pelo usuário
             printf("%c\n",c);
 
@@ -581,7 +848,7 @@ int escolha_do_menu_inicial()
         else
         {
 
-            printf("\t\t       Digite uma opção válida: ");
+            printf("\t\t       Digite uma op%c%co válida: ",135,198);
             c=getch();//captura o caractere digitado pelo usuário
             printf("%c\n",c);
 
@@ -613,31 +880,20 @@ int escolha_do_menu_inicial()
 
     return escolha;
 }
-int contar_elementos_fila(Celula *aux){
 
-    if(aux==NULL)
-    {
-        return 0;
-    }
-    else
-    {
-    	return (contar_elementos_fila(aux->prox)+1);	
-    }
-
-}
 void menu_modo_alerta()
 {
 
     char dateStr[9];
     char timeStr[9];
     system("COLOR 17");
-    //Beep(1000,1700);
-    //sleep(0);
+    Beep(1000,1700);
+    sleep(0);
     system("COLOR 07");
     _strdate(dateStr);
     _strtime(timeStr);
-    printf("\n\t FILA DE IMPRESSÃO ESCOLA ADIRON GONÇALVES BOAVENTURA \n");
-    printf("\t\t  Horário do sistema: %s\n",timeStr);
+    printf("\n\t FILA DE IMPRESS%cO ESCOLA ADIRON GON%cALVES BOAVENTURA \n",199,128);
+    printf("\t\t  Hor%crio do sistema: %s\n",160,timeStr);
     printf("\t\t\t    ");
     system("date /t");
     printf("\n   --------------------------------------------------------------\n");

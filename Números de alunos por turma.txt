@@ -6,8 +6,8 @@
 8 azul 29
 8 verde 34
 9 amarelo 26
-9 lilas 89
-9 vermelho 29
+9 lilas 29
+9 vermelho 30
 1 cinco 40
 2 tres 36
 1 um 34
@@ -20,5 +20,5 @@
 3 um 31
 3 dois 29
 1 seis 44
-2 quatro 23
+2 quatro 12
 3 quatro 32

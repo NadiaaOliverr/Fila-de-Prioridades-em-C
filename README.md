@@ -31,6 +31,12 @@ Nele é possível:
 
 Neste programa utilizou-se o compilador DEVC++ no sistema operacional Windows. A sua execução no linux causa danos a interface gráfica construída pela tabela ASCII.
 
+###Manual do Usuário
+
+Confira o manual <a href="[http://example.com/](https://drive.google.com/file/d/1RP98eQqZtlXx0DlxZsUrW4llSSmjYLhd/view?usp=sharing)" target="_blank">neste link.</a>
+
+
+
 ### Autoras
 
 [<img src="https://avatars0.githubusercontent.com/u/41811634?s=460&v=4" width="100px;"/><br/><sub><b>Nádia Oliveira</b></sub>](https://github.com/NadiaOliver)<br /> |[<img src="https://avatars3.githubusercontent.com/u/45168142?s=460&v=4" width="100px;"/><br /><sub><b>Júlia Mendonça</b></sub>](https://github.com/Juliams78)<br />
@@ -38,7 +44,7 @@ Neste programa utilizou-se o compilador DEVC++ no sistema operacional Windows. A
 
 ## Licença
 
-Este projeto possui a licença [MIT](https://github.com/NadiaOliver/Projeto-de-Estruturas-de-Dados---2018-2/blob/master/License).
+Este projeto possui a licença <a href="https://github.com/NadiaOliver/Projeto-de-Estruturas-de-Dados---2018-2/blob/master/License" target="_blank">MIT</a>
 
 Copyright © 2019.
 

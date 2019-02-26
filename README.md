@@ -4,8 +4,6 @@
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/NadiaOliver/Projeto-de-Estruturas-de-Dados---2018-2/blob/master/License) [![](https://img.shields.io/github/languages/code-size/NadiaOliver/Projeto-de-Estruturas-de-Dados---2018-2.svg)]() [![](https://img.shields.io/github/contributors/NadiaOliver/Projeto-de-Estruturas-de-Dados---2018-2.svg)](https://github.com/NadiaOliver/Projeto-de-Estruturas-de-Dados---2018-2/graphs/contributors)
 
 
-![](https://media.giphy.com/media/1k00n45re2ezUmZWXl/giphy.gif)
-
  ### Como surgiu a ideia?
 
 Localizada na cidade de Rio Paranaíba no estado de Minas Gerais, a Escola Estadual Adiron Gonçalves Boaventura é a única escola do município de Rio Paranaíba que contempla o Ensino Médio e uma das duas que contemplam os últimos anos do Ensino Fundamental, atualmente a escola possui 730 alunos. Diante do número elevado de alunos, os professores enfrentam problemas quanto à impressão de documentos para complemento das atividades em sala de aula, uma vez que, havendo **apenas duas impressoras na escola**, as chances de ocorrer acúmulo de tais papéis é grande, além de, em muitas ocasiões, apenas uma se encontrar em plenas condições de uso. Diante disto, tendo em vista esta situação problema e a proposta de implementar um algorítimo para matéria de estruturas de dados no qual tinha como principal objetivo solucionar um problema real desta cidade e ou região, o atual projeto fora codificado. 
@@ -26,8 +24,8 @@ A distribuição entre as impressoras se daria de forma que os dois primeiros el
 Nele é possível:
 *  Visualizar a quantidade de elementos a serem impressos em ambas as impressoras e separadamente, mostrando o nome do elemento e a turma para qual ele será impresso. 
  * Alterar o número de alunos de uma turma, visto que este pode se modificar.
- *  Durante a impressão de um elemento, será exibido ao usuário qual elemento está sendo impresso e o programa aguardará o tempo de impressão para realizar outra tarefa.
-* Caso alguma impressora falhe, será acionado um modo “alerta”, no qual será feita uma ordenação por valor de prioridade, afim de se realizar uma junção de todos os elementos em espera, onde o primeiro será aquele que gastar mais tempo a ser impresso.
+ *  Ver qual elemento está sendo impresso, sendo que o programa aguardará o tempo de impressão para realizar outra tarefa.
+* Adicionar um  modo “alerta” caso alguma impressora falhe, no qual será feita uma ordenação por valor de prioridade, afim de se realizar uma junção de todos os elementos em espera, onde o primeiro será aquele que gastar mais tempo a ser impresso.
 
 ### Compilando o código
 

@@ -29,9 +29,9 @@ Nele é possível:
 
 ### Compilando o código
 
-Neste programa utilizou-se o compilador DEVC++ no sistema operacional Windows. A sua execução no linux causa danos a interface gráfica construída pela tabela ASCII.
+Neste programa utilizou-se o compilador [DEV-C++](https://sourceforge.net/projects/orwelldevcpp/) no sistema operacional Windows. A sua execução no linux causa danos a interface gráfica construída pela tabela ASCII.
 
-###Manual do Usuário
+### Manual do Usuário
 
 Confira o manual <a href="[http://example.com/](https://drive.google.com/file/d/1RP98eQqZtlXx0DlxZsUrW4llSSmjYLhd/view?usp=sharing)" target="_blank">neste link.</a>
 

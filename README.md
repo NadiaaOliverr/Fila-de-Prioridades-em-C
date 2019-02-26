@@ -33,7 +33,7 @@ Neste programa utilizou-se o compilador [DEV-C++](https://sourceforge.net/projec
 
 ### Manual do Usuário
 
-Confira o manual <a href="[http://example.com/](https://drive.google.com/file/d/1RP98eQqZtlXx0DlxZsUrW4llSSmjYLhd/view?usp=sharing)" target="_blank">neste link.</a>
+Confira o manual [neste link.](https://drive.google.com/file/d/1RP98eQqZtlXx0DlxZsUrW4llSSmjYLhd/view?usp=sharing)
 
 
 

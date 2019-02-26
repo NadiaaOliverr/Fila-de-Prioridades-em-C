@@ -1,15 +1,10 @@
-# Fila de Prioridade de Impressão para Escola Adiron Gonçalves Boaventura
+## Fila de Prioridade de Impressão para Escola Adiron Gonçalves Boaventura
 
 
-
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)]()
-
-[![](https://img.shields.io/github/languages/code-size/NadiaOliver/Projeto-de-Estruturas-de-Dados---2018-2.svg)]()
-
-[![](https://img.shields.io/github/contributors/NadiaOliver/Projeto-de-Estruturas-de-Dados---2018-2.svg)](#contributors)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/NadiaOliver/Projeto-de-Estruturas-de-Dados---2018-2/blob/master/License) [![](https://img.shields.io/github/languages/code-size/NadiaOliver/Projeto-de-Estruturas-de-Dados---2018-2.svg)]() [![](https://img.shields.io/github/contributors/NadiaOliver/Projeto-de-Estruturas-de-Dados---2018-2.svg)](https://github.com/NadiaOliver/Projeto-de-Estruturas-de-Dados---2018-2/graphs/contributors)
 
 
-
+![](https://media.giphy.com/media/1k00n45re2ezUmZWXl/giphy.gif)
 
  ### Como surgiu a ideia?
 
@@ -22,8 +17,8 @@ O sistema fora elaborado em  **linguagem C**, **utilizando da** **Estrutura de D
 ### Como funciona o algorítimo ? 
 A distribuição entre as impressoras se daria de forma que os dois primeiros elementos seriam alocados um em cada impressora e que, a partir do terceiro, seria feito o cálculo de tempo gasto para imprimir os arquivos que já estão em espera, e dessa forma ele seria inserido onde a espera seria menor.Para efetuar o cálculo da prioridade, a seguinte operação foi considerada:
 
-*Número de alunos na turma *X*  Total de páginas do arquivo.*  |
---------- | ------
+| *Número de alunos na turma *X*   Total de páginas do arquivo.* |
+|----------------------------------------------------------------|
 
 
 
@@ -40,12 +35,12 @@ Neste programa utilizou-se o compilador DEVC++ no sistema operacional Windows. A
 
 ### Autoras
 
-[<img src="https://avatars0.githubusercontent.com/u/41811634?s=460&v=4" width="100px;"/><br/><sub><b>Nádia Oliveira</b></sub>](https://github.com/NadiaOliver)<br /> |[<img src="C:\Users\Nádia Oliveira\Downloads\Julia.jpg" width="100px;"/><br /><sub><b>Júlia Mendonça</b></sub>](https://github.com/Juliams78)<br />
+[<img src="https://avatars0.githubusercontent.com/u/41811634?s=460&v=4" width="100px;"/><br/><sub><b>Nádia Oliveira</b></sub>](https://github.com/NadiaOliver)<br /> |[<img src="https://avatars3.githubusercontent.com/u/45168142?s=460&v=4" width="100px;"/><br /><sub><b>Júlia Mendonça</b></sub>](https://github.com/Juliams78)<br />
 --------- | ------
 
 ## Licença
 
-Este projeto possui a licença [MIT]().
+Este projeto possui a licença [MIT](https://github.com/NadiaOliver/Projeto-de-Estruturas-de-Dados---2018-2/blob/master/License).
 
 Copyright © 2019.
 

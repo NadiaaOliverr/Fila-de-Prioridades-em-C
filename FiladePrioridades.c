@@ -1,9 +1,4 @@
-// O arquivo 5956_5162.rar é composto pelo "Leia-me.pdf", 2 cartões de visita ( Nádia e Júlia, ambos png ), Caracteres Ascii Utilizados no código.png
-//5956_5162.doc ( que se trata do enunciado em relaçao a esta codificação ), Números de alunos por turma.txt ( imprescindível para compilação deste código em
-//questão ) e por fim, o código atual, 5956_5162.c
-
-
-//BIBLIOTECAS NECESSÁRIAS
+//BIBLIOTECAS NECESSÃRIAS
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h> //para utilizar o time();
@@ -17,7 +12,7 @@ typedef struct scelula
 {
     char nome_elemento[50];
     char nome_da_turma[50];
-    int prioridade; //a prioridade é o tempo gasto para imprimir o arquivo
+    int prioridade; //a prioridade Ã© o tempo gasto para imprimir o arquivo
     struct scelula* prox;
 } Celula;
 
@@ -28,7 +23,7 @@ typedef struct sfila
 } Fila;
 
 
-//Protótipo das funções
+//ProtÃ³tipo das funÃ§Ãµes
 void menu_inicial();
 void menu_modo_alerta();
 int escolha_do_menu_inicial();
@@ -40,12 +35,12 @@ int quantidade_de_alunos(char turma[]);
 void altera_numero_da_turma();
 
 
-//Funções prórias de Fila
+//FunÃ§Ãµes prÃ³rias de Fila
 int vazia(Fila *f);
 Celula* criar_no();
 void inicializa(Fila *f);
 void insere_na_fila(Fila* a, Fila* b, char nome[],char turma[], int tempo);
-void imprime (Fila* f, Fila *g);      //função recursiva
+void imprime (Fila* f, Fila *g);      //funÃ§Ã£o recursiva
 int contar_elementos_fila(Fila *f,Fila *g);
 void desenfileirar(Fila *fila);
 void insere_fila_aux(Fila *a);
@@ -55,7 +50,7 @@ int pesquisar_fila(Fila* fila, char nome[],char turma[]);
 void redistribuir(Celula* lista, Fila* a, Fila* b); //pra redistribuir o que tiver no modo alerta nas filas do modo normal
 void transferencia_lista_fila(Celula* lista, Fila* fila);//passar o que tiver nas 'filas' para a fila completa
 
-//Funções de lista para quando uma lista auxiliar for utilizada
+//FunÃ§Ãµes de lista para quando uma lista auxiliar for utilizada
 int lista_vazia(Celula* lista);
 void imprime_lista(Celula* lista);
 void insere_na_lista(Celula** lista,char nome[],char turma[], int tempo);
@@ -77,7 +72,7 @@ int main()
     system("COLOR 0A"); //Muda a cor do terminal
     system("title FIFO Priority Printing"); //Muda o nome da janela
 
-    //Declaração de variáveis
+    //DeclaraÃ§Ã£o de variÃ¡veis
     int retorno_menu_inicial;
     int numero_alunos,folhas,tamanho,i, tempo,t;
     char nome[100];
@@ -97,14 +92,14 @@ int main()
     //Inicializa lista auxiliar
     lista = NULL;
 
-    //inicializando as filas de impressões
+    //inicializando as filas de impressÃµes
     inicializa(&filaA);
     inicializa(&filaB);
 
     //Fila auxiliar
     inicializa(&auxiliar);
 
-    //Variáveis de controle
+    //VariÃ¡veis de controle
     int controle =1;
     int controle2=0;
     int controle_nome=0; //para escrever na tela que o nome foi digitado errado na volta do "do while"
@@ -117,7 +112,7 @@ int main()
 
 
 
-    //Laço de repetição que chama o menu inicial e possibilita a escolha das operações de acordo com o querer do usuário
+    //LaÃ§o de repetiÃ§Ã£o que chama o menu inicial e possibilita a escolha das operaÃ§Ãµes de acordo com o querer do usuÃ¡rio
     do
     {
 
@@ -129,7 +124,7 @@ int main()
 
         }
 
-        //ADICIONAR ELEMENTOS A FILA DE IMPRESSÃO
+        //ADICIONAR ELEMENTOS A FILA DE IMPRESSÃƒO
         if(retorno_menu_inicial==1)
         {
             if(controle==1)
@@ -244,9 +239,9 @@ int main()
                         numero_alunos = quantidade_de_alunos(turma);
                     }
 
-                    tempo = ( numero_alunos * folhas  ) ; //Cálculo do numero de alunos da turma * a quantidade de folhas do arquivo
+                    tempo = ( numero_alunos * folhas  ) ; //CÃ¡lculo do numero de alunos da turma * a quantidade de folhas do arquivo
 
-                    if(numero_alunos!=0) //Para não gravar turmas não cadastradas no arquivo
+                    if(numero_alunos!=0) //Para nÃ£o gravar turmas nÃ£o cadastradas no arquivo
                     {
                         insere_na_fila(&filaA,&filaB,nome_aux,turma,tempo);
                         insere_na_lista(&lista,nome_aux,turma,tempo);
@@ -344,7 +339,7 @@ int main()
             }
         }
 
-        //REMOVER ALGUM ELEMENTO DA FILA DE IMPRESSÃO
+        //REMOVER ALGUM ELEMENTO DA FILA DE IMPRESSÃƒO
         if(retorno_menu_inicial==5 && controle==1)
         {
         	if(!lista_vazia(lista)){
@@ -375,7 +370,7 @@ int main()
 		}
     }
 
-        //ALTERAR NÚMERO DE ALUNOS DE UMA TURMA
+        //ALTERAR NÃšMERO DE ALUNOS DE UMA TURMA
         if(retorno_menu_inicial==6)
         {
             altera_numero_da_turma();
@@ -414,18 +409,18 @@ int main()
 
                             if(i%2==0)
                             {
-                                strcat(espaco,"Û");
+                                strcat(espaco,"Ã›");
                             }
                             system("CLS");//limpa a tela
 
                             printf("\t\t\t\t\t\t\tImpressora A\n\n");
-                            printf("\t\t\t               ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿");
+                            printf("\t\t\t               ÃšÃ„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Â¿");
                             printf("\n  Imprindo Arquivos de A ");
 
 
                             printf("\t\t  %s ",espaco);
 
-                            printf("\n\t\t\t               ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ");
+                            printf("\n\t\t\t               Ã€Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã™");
 
                             printf("     %d%% ",i);
                             printf("\n\n\n\n\n\n\n");
@@ -465,18 +460,18 @@ int main()
 
                             if(i%2==0)
                             {
-                                strcat(espaco,"Û");
+                                strcat(espaco,"Ã›");
                             }
                             system("CLS");//limpa a tela
 
                             printf("\t\t\t\t\t\t\tImpressora B\n\n");
-                            printf("\t\t\t               ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿");
+                            printf("\t\t\t               ÃšÃ„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Â¿");
                             printf("\n  Imprindo Arquivos de B ");
 
 
                             printf("\t\t  %s ",espaco);
 
-                            printf("\n\t\t\t               ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ");
+                            printf("\n\t\t\t               Ã€Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã™");
 
                             printf("     %d%% ",i);
                             printf("\n\n\n\n\n\n\n");
@@ -516,7 +511,7 @@ int main()
 
                             if(i%2==0)
                             {
-                                strcat(espaco,"Û");
+                                strcat(espaco,"Ã›");
                             }
                             system("CLS");//limpa a tela
 
@@ -540,13 +535,13 @@ int main()
 
 							if(controle_f && i!=0){
                             printf("\t\t\t\t\t\t\tImpressora A\n\n");
-                            printf("\t\t\t               ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿");
+                            printf("\t\t\t               ÃšÃ„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Â¿");
                             printf("\n  Imprindo Arquivos de A ");
 
 
                             printf("\t\t  %s ",espaco);
 
-                            printf("\n\t\t\t               ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ");
+                            printf("\n\t\t\t               Ã€Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã™");
 
                             printf("     %d%% ",i);
                             printf("\n\n\n\n\n\n\n");
@@ -555,13 +550,13 @@ int main()
 							 if(controle_f1 && i!=0){
 
                             printf("\t\t\t\t\t\t\tImpressora B\n\n");
-                            printf("\t\t\t               ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿");
+                            printf("\t\t\t               ÃšÃ„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Â¿");
                             printf("\n  Imprindo Arquivos de B ");
 
 
                             printf("\t\t  %s ",espaco);
 
-                            printf("\n\t\t\t               ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ");
+                            printf("\n\t\t\t               Ã€Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã™");
 
                             printf("     %d%% ",i);
                             printf("\n\n\n\n\n\n\n");
@@ -599,10 +594,10 @@ int main()
             //inicializando a fila do modo alerta
             inicializa(&filaMA);
 
-            //função que ordena a lista anterior
+            //funÃ§Ã£o que ordena a lista anterior
             mover_pra_frente(&lista);
             transferencia_lista_fila(lista,&filaMA);
-            lista=NULL; //remove tudo que está na lista
+            lista=NULL; //remove tudo que estÃ¡ na lista
             transferencia_fila_lista(&filaMA,&auxiliar,&lista);
 
 
@@ -734,9 +729,9 @@ int main()
                         numero_alunos = quantidade_de_alunos(turma);
                     }
 
-                    tempo = ( numero_alunos * folhas  ) ; //Cálculo do numero de alunos da turma * a quantidade de folhas do arquivo
+                    tempo = ( numero_alunos * folhas  ) ; //CÃ¡lculo do numero de alunos da turma * a quantidade de folhas do arquivo
 				}
-                    if(numero_alunos!=0) //Para não gravar turmas não cadastradas no arquivo
+                    if(numero_alunos!=0) //Para nÃ£o gravar turmas nÃ£o cadastradas no arquivo
                     {
                         enfileirar(&filaMA,turma,nome_aux,tempo);
                         insere_na_lista(&lista,nome_aux,turma,tempo);
@@ -773,7 +768,7 @@ int main()
                         system("cls");
                     }
 
-                    //REMOVE ELEMENTO DA FILA DE IMPRESSÃO
+                    //REMOVE ELEMENTO DA FILA DE IMPRESSÃƒO
                     if(retorno_menu_alerta==3)
                     {
 						if(!lista_vazia(lista)){
@@ -838,18 +833,18 @@ int main()
 
                                         if(i%2==0)
                                         {
-                                            strcat(espaco,"Û");
+                                            strcat(espaco,"Ã›");
                                         }
                                         system("CLS");//limpa a tela
 
                                         printf("\t\t\t\t\t\t\tImpressora \n\n");
-                                        printf("\t\t\t               ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿");
+                                        printf("\t\t\t               ÃšÃ„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Â¿");
                                         printf("\n  Imprindo Arquivos      ");
 
 
                                         printf("\t\t  %s ",espaco);
 
-                                        printf("\n\t\t\t               ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ");
+                                        printf("\n\t\t\t               Ã€Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã™");
 
                                         printf("     %d%% ",i);
                                         printf("\n\n\n\n\n\n\n");
@@ -916,16 +911,16 @@ int main()
             {
                 if(i%2==0)
                 {
-                    strcat(espaco,"Û");
+                    strcat(espaco,"Ã›");
                 }
                 system("CLS");//limpa a tela
-                printf("\t\t\t               ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿");
+                printf("\t\t\t               ÃšÃ„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Â¿");
                 printf("\n       Saindo do Sistema");
 
 
                 printf("\t\t  %s ",espaco);
 
-                printf("\n\t\t\t               ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ");
+                printf("\n\t\t\t               Ã€Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã„Ã™");
 
                 printf("     %d%% ",i);
                 printf("\n\n\n\n\n\n\n");
@@ -952,29 +947,29 @@ void altera_numero_da_turma()
 
     int i=0,z=0,t=0,d,x,encontrou=0;
 
-    char turma[100]; //variável de entrada
-    int turmanovo; //Variável de entrada
+    char turma[100]; //variÃ¡vel de entrada
+    int turmanovo; //VariÃ¡vel de entrada
 
-    int tam; //Para ver o tamanho da palavra que foi inserida na entrada "turma", para posterior alocação na variável aux
-    char* token; //Recebe o argumento que servirá de token para quebrar a string digitada na variável "turma"
+    int tam; //Para ver o tamanho da palavra que foi inserida na entrada "turma", para posterior alocaÃ§Ã£o na variÃ¡vel aux
+    char* token; //Recebe o argumento que servirÃ¡ de token para quebrar a string digitada na variÃ¡vel "turma"
 
-    //Variáveis para ler do arquivo
+    //VariÃ¡veis para ler do arquivo
     char nome_da_turma[100];
     int quantidade;
     int ano;
 
-    //Variáveis auxiliares para quebra da turma digitada
-    char* aux; //Cópia da turma para aux, ou seja turma = aux
+    //VariÃ¡veis auxiliares para quebra da turma digitada
+    char* aux; //CÃ³pia da turma para aux, ou seja turma = aux
     char aux2[100];
     char aux3[10];
 
 
-    //Crição de arquivos
+    //CriÃ§Ã£o de arquivos
     FILE *alunos_por_turma;
     FILE *alunos_por_turma_aux;
 
-    alunos_por_turma = fopen("Números de alunos por turma.txt","r");
-    alunos_por_turma_aux = fopen("Novo números de alunos por turma.txt","w");
+    alunos_por_turma = fopen("NÃºmeros de alunos por turma.txt","r");
+    alunos_por_turma_aux = fopen("Novo nÃºmeros de alunos por turma.txt","w");
     if(alunos_por_turma==NULL)
     {
         printf("Arquivo inexistente.\n");
@@ -1008,10 +1003,10 @@ void altera_numero_da_turma()
         t++;
     }
 
-    x = atoi(aux3); //Converte o char armazenado na variável aux3 em inteiro
+    x = atoi(aux3); //Converte o char armazenado na variÃ¡vel aux3 em inteiro
 
 
-    while( (fscanf(alunos_por_turma,"%d %s %d\n", &ano, nome_da_turma, &quantidade))!=EOF ) //Lê o txt até encontrar o fim do arquivo
+    while( (fscanf(alunos_por_turma,"%d %s %d\n", &ano, nome_da_turma, &quantidade))!=EOF ) //LÃª o txt atÃ© encontrar o fim do arquivo
     {
         if(ano==x)
         {
@@ -1019,7 +1014,7 @@ void altera_numero_da_turma()
             {
                 for(i=0; i<strlen(nome_da_turma); i++)
                 {
-                    nome_da_turma[i]  = toupper(nome_da_turma[i]); // Converte caracter minusculo em maiusculo para aparecer para o usuário destacado
+                    nome_da_turma[i]  = toupper(nome_da_turma[i]); // Converte caracter minusculo em maiusculo para aparecer para o usuÃ¡rio destacado
                 }
 
                 printf("\nO tamanho atual da turma %s %c: %d alunos!\n",nome_da_turma,130,quantidade);
@@ -1061,11 +1056,11 @@ void altera_numero_da_turma()
 
     fclose(alunos_por_turma);
 
-    alunos_por_turma = fopen("Números de alunos por turma.txt","w");
+    alunos_por_turma = fopen("NÃºmeros de alunos por turma.txt","w");
 
     fclose(alunos_por_turma_aux);
 
-    alunos_por_turma_aux = fopen("Novo números de alunos por turma.txt","r");
+    alunos_por_turma_aux = fopen("Novo nÃºmeros de alunos por turma.txt","r");
 
 
     while( (fscanf(alunos_por_turma_aux,"%d %s %d\n", &ano, nome_da_turma, &quantidade))!=EOF ) //L? o txt at? encontrar o fim do arquivo
@@ -1073,7 +1068,7 @@ void altera_numero_da_turma()
         fprintf(alunos_por_turma,"%d %s %d\n", ano,nome_da_turma,quantidade);
     }
     fclose(alunos_por_turma_aux);
-    remove("Novo números de alunos por turma.txt"); //Remove o arquivo auxiliar
+    remove("Novo nÃºmeros de alunos por turma.txt"); //Remove o arquivo auxiliar
     fclose(alunos_por_turma);
 }
 
@@ -1092,16 +1087,16 @@ int quantidade_de_alunos(char turma[]) //retorna a quantidade de alunos de uma t
     char* token;
 
 
-    alunos_por_turma = fopen("Números de alunos por turma.txt","r");
+    alunos_por_turma = fopen("NÃºmeros de alunos por turma.txt","r");
     if(alunos_por_turma==NULL)
     {
         printf("Arquivo inexistente.\n");
         exit(1);
     }
 
-    tam = strlen(turma); //Verifica o tamanho da string para posterior alocação na variável auxiliar para busca no arquivo
+    tam = strlen(turma); //Verifica o tamanho da string para posterior alocaÃ§Ã£o na variÃ¡vel auxiliar para busca no arquivo
     aux = (char*)malloc(tam * sizeof(char));
-    strcpy(aux,turma); //faz a cópia da turma digitada para variável que servirá de comparação para verificar a existência no arquivo
+    strcpy(aux,turma); //faz a cÃ³pia da turma digitada para variÃ¡vel que servirÃ¡ de comparaÃ§Ã£o para verificar a existÃªncia no arquivo
 
 
     token = strtok(aux, " ");
@@ -1125,7 +1120,7 @@ int quantidade_de_alunos(char turma[]) //retorna a quantidade de alunos de uma t
     int z=0;
 
 
-    while( (fscanf(alunos_por_turma,"%d %s %d\n", &ano, nome_da_turma, &quantidade))!=EOF ) //Lê o txt até encontrar o fim do arquivo
+    while( (fscanf(alunos_por_turma,"%d %s %d\n", &ano, nome_da_turma, &quantidade))!=EOF ) //LÃª o txt atÃ© encontrar o fim do arquivo
     {
 
         if(ano==x)
@@ -1156,7 +1151,7 @@ int quantidade_de_alunos(char turma[]) //retorna a quantidade de alunos de uma t
     }
 }
 
-//Funções essenciais de Fila
+//FunÃ§Ãµes essenciais de Fila
 
 void inicializa(Fila *f)
 {
@@ -1167,7 +1162,7 @@ int vazia(Fila *f)
 {
     if(f->inicio==NULL)
         return 1; //se estiver vazia
-    return 0; //se não estiver vazia
+    return 0; //se nÃ£o estiver vazia
 }
 
 Celula* criar_no()
@@ -1201,7 +1196,7 @@ void insere_na_fila(Fila* a, Fila* b, char nome[],char turma[], int tempo)  //in
 
             a->fim=r;
         }
-        else if(vazia(b)) // se a fila de a não estiver vazia e a flia de b estiver, insere em b
+        else if(vazia(b)) // se a fila de a nÃ£o estiver vazia e a flia de b estiver, insere em b
         {
             b->inicio=r;
 
@@ -1484,9 +1479,9 @@ int escolha_de_imprimir()
 {
 
     char digitado[50];
-    char c;//armazena cada caractere digitado pelo usuário
+    char c;//armazena cada caractere digitado pelo usuÃ¡rio
     int i=0;
-    int escolha=0;//variável para armazenar a conversão do que foi digitado pelo usuário
+    int escolha=0;//variÃ¡vel para armazenar a conversÃ£o do que foi digitado pelo usuÃ¡rio
     int cont=0;
 
 
@@ -1615,7 +1610,7 @@ void redistribuir(Celula* lista, Fila* a, Fila* b)
     }
 }
 
-//FUNÇÕES PARA USO DA LISTA
+//FUNÃ‡Ã•ES PARA USO DA LISTA
 int lista_vazia(Celula* lista)
 {
     if(lista==NULL)//se estiver vazia
@@ -1816,9 +1811,9 @@ void transferencia_fila_lista(Fila *fila, Fila* auxiliar, Celula** lista)
 int escolha_de_tamanho()
 {
     char digitado[50];
-    char c;//armazena cada caractere digitado pelo usuário
+    char c;//armazena cada caractere digitado pelo usuÃ¡rio
     int i=0;
-    int escolha=0;//variável para armazenar a conversão do que foi digitado pelo usuário
+    int escolha=0;//variÃ¡vel para armazenar a conversÃ£o do que foi digitado pelo usuÃ¡rio
     int cont=0;
 
 
@@ -1908,9 +1903,9 @@ void menu_inicial()
 int escolha_do_menu_inicial()
 {
     char digitado[50];
-    char c;//armazena cada caractere digitado pelo usuário
+    char c;//armazena cada caractere digitado pelo usuÃ¡rio
     int i=0;
-    int escolha=0;//variável para armazenar a conversão do que foi digitado pelo usuário
+    int escolha=0;//variÃ¡vel para armazenar a conversÃ£o do que foi digitado pelo usuÃ¡rio
     int cont=0;
 
     do
@@ -1922,16 +1917,16 @@ int escolha_do_menu_inicial()
             c=getch();//captura o caractere digitado pelo usu?rio
             printf("%c\n",c);
 
-            //isdigit verifica se o que foi digitado é um número ou não, retornando qualquer número diferente de 0, se for um número
+            //isdigit verifica se o que foi digitado Ã© um nÃºmero ou nÃ£o, retornando qualquer nÃºmero diferente de 0, se for um nÃºmero
 
-            if (isdigit(c)!=0)  //se for um número
+            if (isdigit(c)!=0)  //se for um nÃºmero
             {
                 digitado[i] = c;//armazena no vetor de caracteres
                 i++;
             }
-            else if(c==8 && i)//se for pressionada a tecla BACKSPACE e houver caracteres já digitados, ou seja, i!=0
+            else if(c==8 && i)//se for pressionada a tecla BACKSPACE e houver caracteres jÃ¡ digitados, ou seja, i!=0
             {
-                digitado[i]='\0';//o índice atual do vetor de caracteres recebe a terminação da string
+                digitado[i]='\0';//o Ã­ndice atual do vetor de caracteres recebe a terminaÃ§Ã£o da string
                 i--;
                 printf("\b \b");//o caractere digitado e apagado da tela, primeiro \b apaga o caracter da tela e o segundo \b tira o caracter da tela
             }
@@ -1940,21 +1935,21 @@ int escolha_do_menu_inicial()
         {
 
             printf("\t\t       Digite uma op%c%co v%clida: ",135,198,160);
-            c=getch();//captura o caractere digitado pelo usuário
+            c=getch();//captura o caractere digitado pelo usuÃ¡rio
             printf("%c\n",c);
 
-            //isdigit verifica se o que foi digitado é um número ou não, retornando qualquer número diferente de 0, se for um número
+            //isdigit verifica se o que foi digitado Ã© um nÃºmero ou nÃ£o, retornando qualquer nÃºmero diferente de 0, se for um nÃºmero
 
-            if (isdigit(c)!=0)  //se for um número
+            if (isdigit(c)!=0)  //se for um nÃºmero
             {
                 digitado[i] = c;//armazena no vetor de caracteres
                 i++;
             }
-            else if(c==8 && i)//se for pressionada a tecla BACKSPACE e houver caracteres já digitados, ou seja, i!=0
+            else if(c==8 && i)//se for pressionada a tecla BACKSPACE e houver caracteres jÃ¡ digitados, ou seja, i!=0
             {
-                digitado[i]='\0';//o índice atual do vetor de caracteres recebe a terminação da string
+                digitado[i]='\0';//o Ã­ndice atual do vetor de caracteres recebe a terminaÃ§Ã£o da string
                 i--;
-                printf("\b \b");//o caractere digitado é apagado da tela, primeiro \b apaga o caracter da tela e o segundo \b tira o caracter da tela
+                printf("\b \b");//o caractere digitado Ã© apagado da tela, primeiro \b apaga o caracter da tela e o segundo \b tira o caracter da tela
             }
         }
         cont ++;
@@ -1962,12 +1957,12 @@ int escolha_do_menu_inicial()
     while(c<'1' || c>'9');
 
 
-    digitado[i]='\0';   //o índice atual do vetor de caracteres recebe a terminaçao da string
+    digitado[i]='\0';   //o Ã­ndice atual do vetor de caracteres recebe a terminaÃ§ao da string
 
     int tam = strlen(digitado);
 
     //atoi converte char para int
-    escolha = atoi(&digitado[tam-1]); //atoi() tem como um parâmetro um ponteiro para caracteres, por isso, pra usar com vetor tem que usar o &
+    escolha = atoi(&digitado[tam-1]); //atoi() tem como um parÃ¢metro um ponteiro para caracteres, por isso, pra usar com vetor tem que usar o &
 
     return escolha;
 }
@@ -1975,9 +1970,9 @@ int escolha_do_menu_inicial()
 int escolha_menu_alerta()
 {
     char digitado[50];
-    char c;//armazena cada caractere digitado pelo usuário
+    char c;//armazena cada caractere digitado pelo usuÃ¡rio
     int i=0;
-    int escolha=0;//variável para armazenar a conversão do que foi digitado pelo usuário
+    int escolha=0;//variÃ¡vel para armazenar a conversÃ£o do que foi digitado pelo usuÃ¡rio
     int cont=0;
 
     do
@@ -1989,16 +1984,16 @@ int escolha_menu_alerta()
             c=getch();//captura o caractere digitado pelo usu?rio
             printf("%c\n",c);
 
-            //isdigit verifica se o que foi digitado é um número ou não, retornando qualquer número diferente de 0, se for um número
+            //isdigit verifica se o que foi digitado Ã© um nÃºmero ou nÃ£o, retornando qualquer nÃºmero diferente de 0, se for um nÃºmero
 
-            if (isdigit(c)!=0)  //se for um número
+            if (isdigit(c)!=0)  //se for um nÃºmero
             {
                 digitado[i] = c;//armazena no vetor de caracteres
                 i++;
             }
-            else if(c==8 && i)//se for pressionada a tecla BACKSPACE e houver caracteres já digitados, ou seja, i!=0
+            else if(c==8 && i)//se for pressionada a tecla BACKSPACE e houver caracteres jÃ¡ digitados, ou seja, i!=0
             {
-                digitado[i]='\0';//o índice atual do vetor de caracteres recebe a terminação da string
+                digitado[i]='\0';//o Ã­ndice atual do vetor de caracteres recebe a terminaÃ§Ã£o da string
                 i--;
                 printf("\b \b");//o caractere digitado e apagado da tela, primeiro \b apaga o caracter da tela e o segundo \b tira o caracter da tela
             }
@@ -2007,21 +2002,21 @@ int escolha_menu_alerta()
         {
 
             printf("\t\t       Digite uma op%c%co v%clida: ",135,198,160);
-            c=getch();//captura o caractere digitado pelo usuário
+            c=getch();//captura o caractere digitado pelo usuÃ¡rio
             printf("%c\n",c);
 
-            //isdigit verifica se o que foi digitado é um número ou não, retornando qualquer número diferente de 0, se for um número
+            //isdigit verifica se o que foi digitado Ã© um nÃºmero ou nÃ£o, retornando qualquer nÃºmero diferente de 0, se for um nÃºmero
 
-            if (isdigit(c)!=0)  //se for um número
+            if (isdigit(c)!=0)  //se for um nÃºmero
             {
                 digitado[i] = c;//armazena no vetor de caracteres
                 i++;
             }
-            else if(c==8 && i)//se for pressionada a tecla BACKSPACE e houver caracteres já digitados, ou seja, i!=0
+            else if(c==8 && i)//se for pressionada a tecla BACKSPACE e houver caracteres jÃ¡ digitados, ou seja, i!=0
             {
-                digitado[i]='\0';//o índice atual do vetor de caracteres recebe a terminação da string
+                digitado[i]='\0';//o Ã­ndice atual do vetor de caracteres recebe a terminaÃ§Ã£o da string
                 i--;
-                printf("\b \b");//o caractere digitado é apagado da tela, primeiro \b apaga o caracter da tela e o segundo \b tira o caracter da tela
+                printf("\b \b");//o caractere digitado Ã© apagado da tela, primeiro \b apaga o caracter da tela e o segundo \b tira o caracter da tela
             }
         }
         cont ++;
@@ -2029,12 +2024,12 @@ int escolha_menu_alerta()
     while(c<'1' || c>'7');
 
 
-    digitado[i]='\0';   //o índice atual do vetor de caracteres recebe a terminaçao da string
+    digitado[i]='\0';   //o Ã­ndice atual do vetor de caracteres recebe a terminaÃ§ao da string
 
     int tam = strlen(digitado);
 
     //atoi converte char para int
-    escolha = atoi(&digitado[tam-1]); //atoi() tem como um parâmetro um ponteiro para caracteres, por isso, pra usar com vetor tem que usar o &
+    escolha = atoi(&digitado[tam-1]); //atoi() tem como um parÃ¢metro um ponteiro para caracteres, por isso, pra usar com vetor tem que usar o &
 
     return escolha;
 }
@@ -2042,9 +2037,9 @@ int escolha_menu_alerta()
 int quantidade_de_folhas()
 {
     char digitado[50];
-    char c;//armazena cada caractere digitado pelo usuário
+    char c;//armazena cada caractere digitado pelo usuÃ¡rio
     int i=0;
-    int escolha=0;//variável para armazenar a conversão do que foi digitado pelo usuário
+    int escolha=0;//variÃ¡vel para armazenar a conversÃ£o do que foi digitado pelo usuÃ¡rio
     int cont=0;
 
 
@@ -2092,7 +2087,7 @@ int quantidade_de_folhas()
         cont ++;
 
     }
-    while(c<'1' || isalpha(c));  //isalpha  ---- Verdadeiro se x é uma letra de A-Z ou a-z
+    while(c<'1' || isalpha(c));  //isalpha  ---- Verdadeiro se x Ã© uma letra de A-Z ou a-z
 
 
     digitado[i]='\0';
